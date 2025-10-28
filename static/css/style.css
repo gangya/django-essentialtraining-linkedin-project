@@ -1,0 +1,11 @@
+.note_li{
+    color: red;
+}
+
+/*#id_title_error {
+    display: none;
+}*/
+
+ul.errorlist{
+    display: none;
+}
