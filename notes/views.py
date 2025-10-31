@@ -3,16 +3,25 @@ from . import models
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView 
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Notes
 from .forms import NotesForm
 # Create your views here.
 
+class DeleteNote(LoginRequiredMixin, DeleteView):
+   model = Notes
+   context_object_name = "note"
+   template_name = "notes/delete_note.html"
+   success_url = "/smart/notes/"
+   login_url = "/admin/"
+
+
 class CreateNote(LoginRequiredMixin, CreateView):
    model = Notes
    #fields = ["title","text"]
-   form_class = NotesForm   
+   form_class = NotesForm
    context_object_name = "note"
    template_name = "notes/create_note.html"
    success_url = "/smart/notes/"

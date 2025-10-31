@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="{% url 'CreateNoteView' %}" method="post"> {% csrf_token %}
+<!--action="{% url 'CreateNoteView' %}" -->
+<form method="post"> {% csrf_token %}
     {{form}}
     <button type="submit" class="btn btn-primary my-5">Submit</button>
     <a href="{% url 'DisplayNotesView' %}" class="btn btn-secondary">Cancel</a>

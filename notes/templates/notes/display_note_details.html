@@ -6,6 +6,7 @@
     <div class="">
         <a href="{% url 'UpdateNoteView' pk=note.id %}" class="btn btn-primary">Edit</a>
         <a href="{% url 'DisplayNotesView' %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"">View all notes..</a>
+        <a href="{% url 'DeleteNoteView' pk=note.id %}" class="btn btn-danger">Delete</a>
     </div>
 </div>
 {% endblock %}
