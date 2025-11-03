@@ -3,10 +3,16 @@
 <div class="border round">
     <h1 class="my-5">{{note.title}}</h1>
     <p>{{note.text}}</p>
+    <p>Likes counter: {{note.likes}}</p>
+    <!-- <a href="" class="btn btn-primary" >Like to Note</a>  -->
     <div class="">
+        <form action="{% url 'UpdateLikeNoteView' pk=note.id %}" method="post" class="d-inline">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-secondary" >Like to Note</button>
+        </form>    
         <a href="{% url 'UpdateNoteView' pk=note.id %}" class="btn btn-primary">Edit</a>
         <a href="{% url 'DisplayNotesView' %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"">View all notes..</a>
-        <a href="{% url 'DeleteNoteView' pk=note.id %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'DeleteNoteView' pk=note.id %}" class="btn btn-danger">Delete</a>        
     </div>
 </div>
 {% endblock %}
