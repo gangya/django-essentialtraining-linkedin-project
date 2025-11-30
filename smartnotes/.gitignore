@@ -4,6 +4,9 @@ node_modules
 npm-debug.log
 
 __pycache__/
+notes/__pycache__/
+home/__pycache__/
+smartnotes/__pycache__/
 *.py[cod]
 *$py.class
 

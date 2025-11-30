@@ -4,23 +4,35 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import logout
+from django.contrib.auth.forms import UserCreationForm
+
 from django.http import HttpResponseRedirect
 
 # Create your views here.
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = "userpage/register.html"
+    success_url = "../smart/notes/"
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect("DisplayNotesView") #../notes/display_notes.html
+        return super().get(request, *args, **kwargs)
 
 class LoginPageView(LoginView):
     template_name = "userpage/login.html"
 
 def logoutView(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         HttpResponse(request, "Awesome! You have been logged out successfully!")
-        return LogoutView.as_view(next_page='/login/')(request)
+        return LogoutView.as_view(next_page="/login/")(request)
     else:
-        return render(request, '/login/')
+        return render(request, "/login/")
 
 class LogoutPageView(LogoutView):    
     template_name = "userpage/logout.html"

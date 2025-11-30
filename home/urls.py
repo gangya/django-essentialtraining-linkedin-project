@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path("login/", views.LoginPageView.as_view(), name="loginpageView"),
+    path("signup/", views.SignUpView.as_view(), name="SignUpView"),
     #path("logout/", views.LogoutView.as_view(), name="logoutpageView"),
     path("logout/", views.logoutView, name="logoutpageView"),
     #path('logout/', views.LogoutView.as_view(http_method_names = ['get', 'post', 'options']), name='logoutpageView'),

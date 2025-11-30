@@ -28,9 +28,9 @@ class UpdateLikeNote(LoginRequiredMixin, UpdateView):
 """
 This method is appropiated to update an attribute of the model  
 """
-@login_required(login_url="/admin/")
+@login_required(login_url="login/")
 def UpdateLikeNote(request, pk):      
-       if request.method == 'POST':
+       if request.method == "POST":
          try:
             #note = models.Notes.objects.get(pk=pk)
             note = get_object_or_404(Notes, pk=pk)
@@ -41,7 +41,7 @@ def UpdateLikeNote(request, pk):
             raise Http404("Notes matching query, note does not exist!")   
        raise Http404("Only Post method for changing system!", request.method)
 
-@login_required(login_url="/admin/")
+@login_required(login_url="login/")
 def UpdateVisibilityNote(request, pk):      
        if request.method == 'POST':
          try:
@@ -101,14 +101,20 @@ class DisplayNotes(LoginRequiredMixin, ListView):
    login_url = "/login/" #redirects to new personalized login page/view
 
    def get_queryset(self):
-      return self.request.user.notes.all() 
+      return self.request.user.notes.all()
+
+class DisplayPublicNotes(ListView):
+   model = Notes
+   context_object_name = "all_notes"
+   template_name = "notes/display_notes.html"
+   queryset = model.objects.filter(is_public=True)
 
 """
 @login_required(login_url="../admin/")
 def display_all_notes(request):
     return (render(request, "notes/display_notes.html", {"all_notes": models.Notes.objects.all()}))
 """
-class DisplayNotesDetails(LoginRequiredMixin, DetailView):
+class DisplayNotesDetails(DetailView):
    model = Notes
    context_object_name = "note"
    template_name = "notes/display_note_details.html"

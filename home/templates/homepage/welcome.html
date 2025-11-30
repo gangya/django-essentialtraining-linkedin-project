@@ -3,5 +3,10 @@
         <h1>Welcome to SmartNotes!</h1>        
         <p>Today is: {{today}}!</p>        
         {% include "homepage/advantages.html" %}
-        <a href="{% url 'DisplayNotesView' %}" class="btn btn-primary">Check out these smart notes!</a>
+        {% if user.is_authenticated %}
+                <a href="{% url 'DisplayNotesView' %}" class="btn btn-primary">Check out these smart notes!</a>
+                {% else %}
+                        <!--{% url 'DisplayNotesPublicView' %}-->
+                        <a href="{% url 'DisplayNotesPublicView' %}" class="btn btn-primary">Check out these public smart notes!</a>
+        {% endif %}
 {% endblock %}
