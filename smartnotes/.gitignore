@@ -5,7 +5,9 @@ npm-debug.log
 
 __pycache__/
 notes/__pycache__/
+notes/migrations/__pycache__/
 home/__pycache__/
+home/migrations/__pycache__/
 smartnotes/__pycache__/
 *.py[cod]
 *$py.class
